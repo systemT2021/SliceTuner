@@ -10,5 +10,6 @@ We contend that one needs to selectively acquire data and propose System T, whic
 
 The key challenges of estimating learning curves are that they may be inaccurate if there is not enough data, and there may be dependencies among slices where acquiring data for one slice influences the learning curves of others. We solve these issues by iteratively and efficiently updating the learning curves as more data is acquired. We evaluate System T on real datasets using crowdsourcing for data acquisition and show that System T significantly outperforms baselines in terms of model accuracy and fairness, even when the learning curves cannot be reliably estimated. 
 
-## Workflow of System T
+## Architecture
 System T receives as input a set of slices and their data and estimatesthe learning curves of the slices by training models on samples ofdata. .Next, System T performs the selective data acquisition optimizationwhere it determines how much data should be acquired per slice inorder to minimize the loss and unfairness. As data is acquired, thelearning curves can be iteratively updated. 
+[systems.pdf](https://github.com/systemT2021/SystemT/files/4878248/systems.pdf)
