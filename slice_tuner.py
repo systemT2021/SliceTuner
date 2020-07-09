@@ -15,13 +15,13 @@ import copy
 class SliceTuner:
     def __init__(self, train, val, val_data_dict, data_num_array, num_class, add_data_dict):
         """
-        Args:
-            train: Training data and label
-            val: Valiation data and label
-            val_data_dict: Validation data per each slice
-            data_num_array: Initial slice sizes
-            num_class: Number of class
-            add_data_dict: Data assumed to be collected
+            Args:
+                train: Training data and label
+                val: Valiation data and label
+                val_data_dict: Validation data per each slice
+                data_num_array: Initial slice sizes
+                num_class: Number of class
+                add_data_dict: Data assumed to be collected
         """
         
         self.train = copy.deepcopy(train[0]), copy.deepcopy(train[1])
@@ -33,18 +33,18 @@ class SliceTuner:
     
     def selective_collect(self, budget, k, batch_size, lr, epochs, cost_func, Lambda, num_iter, slice_desc, strategy="one-shot", show_figure=False):
         """ 
-        Selecitve data collection function to determin how much data collection is needed for each slice 
-        given a budget in order to optimzie both accuracy and fairness.
-        
-        Args: 
-            budget: Data collection budget
-            k: Number of subsets of data to fit a learning curve
-            cost_func: Represents the effort to collect an example for a slice
-            Lambda: Balancing term between loss and unfairness
-            num_iter: Number of training times for averaging
-            strategy: Strategy for updating the limit T (e.g., one-shot, aggressive, linear, conservative)
-            show_figure: Plot the learning curve if show_figure is True
-            slice_desc: Slice description (e.g., Slice: Shirt)
+            Selecitve data collection function to determin how much data collection is needed for each slice 
+            given a budget in order to optimzie both accuracy and fairness.
+
+            Args: 
+                budget: Data collection budget
+                k: Number of subsets of data to fit a learning curve
+                cost_func: Represents the effort to collect an example for a slice
+                Lambda: Balancing term between loss and unfairness
+                num_iter: Number of training times for averaging
+                strategy: Strategy for updating the limit T (e.g., one-shot, aggressive, linear, conservative)
+                show_figure: Plot the learning curve if show_figure is True
+                slice_desc: Slice description (e.g., Slice: Shirt)
         """
         
         self.budget = budget
