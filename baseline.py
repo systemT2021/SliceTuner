@@ -10,17 +10,17 @@ from cnn import *
 class Baseline:
     def __init__(self, train, val, val_data_dict, data_num_array, num_class, add_data_dict, method):
         """
-        Args:
-            train: Training data and label
-            val: Valiation data and label
-            val_data_dict: Validation data per each slice
-            data_num_array: Initial slice sizes
-            num_class: Number of class
-            add_data_dict: Data assumed to be collected
-            
-            method: Choose the baseline method
-                Uniform: Collects similar amounts of data per slic
-                Waterfilling: Collects data such that the slices end up having similar amounts of data
+            Args:
+                train: Training data and label
+                val: Valiation data and label
+                val_data_dict: Validation data per each slice
+                data_num_array: Initial slice sizes
+                num_class: Number of class
+                add_data_dict: Data assumed to be collected
+
+                method: Choose the baseline method
+                    Uniform: Collects similar amounts of data per slic
+                    Waterfilling: Collects data such that the slices end up having similar amounts of data
         """
         
         self.train = copy.deepcopy(train[0]), copy.deepcopy(train[1])
@@ -34,10 +34,10 @@ class Baseline:
     
     def performance(self, budget, cost_func, num_iter, batch_size, lr, epochs):
         """ 
-        Args: 
-            budget: Data collection budget
-            cost_func: Represents the effort to collect an example for a slice
-            num_iter: Number of training times
+            Args: 
+                budget: Data collection budget
+                cost_func: Represents the effort to collect an example for a slice
+                num_iter: Number of training times
         """
         
         self.budget = budget
