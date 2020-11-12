@@ -8,7 +8,9 @@ import copy
 
 from tensorflow import keras
 from tensorflow.keras import layers, models
-from tensorflow.keras.callbacks import EarlyStopping,ModelCheckpoint
+from tensorflow.keras.callbacks import EarlyStopping,ModelCheckpoint,LearningRateScheduler
+
+from resnet import *
 
 class CNN:
     def __init__(self, train_data, train_label, val_data, val_label, val_data_dict, batch_size, epochs, lr, num_class):
@@ -63,6 +65,8 @@ class CNN:
         model.add(layers.Dropout(0.3))
         model.add(layers.Dense(self.num_class, activation='softmax'))
 
+        # for ResNet-18
+        # model = ResNet18(input_shape=(28, 28, 1), classes=self.num_class)
         model.compile(loss='categorical_crossentropy',
         optimizer=keras.optimizers.Adam(lr=self.lr),
         metrics=['accuracy'])
@@ -79,6 +83,12 @@ class CNN:
                 process_num: Process number used for parallel training.
         """
         
+        def scheduler(lr):
+            if epoch < 20:
+                return lr
+            else:
+                return lr * 0.5
+        
         loss_dict = []
         slice_num = self.check_num(self.train_data[1])
         
@@ -86,6 +96,7 @@ class CNN:
         es = EarlyStopping(monitor='val_loss', mode='min', patience=20)
         cp = ModelCheckpoint(filepath=file_path, monitor='val_loss',
                                 verbose=0, save_best_only=True)
+        lr_s = LearningRateScheduler(scheduler, verbose=0)
         
         history = self.model.fit(self.train_data[0], self.train_data[1],
                             batch_size=self.batch_size,
@@ -93,6 +104,7 @@ class CNN:
                             verbose=0,
                             validation_data=(self.val_data[0], self.val_data[1]),
                             callbacks=[es, cp])
+                            #callbacks = [es, cp, lr_s] for ResNet-18
         
         self.model.load_weights(file_path)
         for i in range(self.num_class):
