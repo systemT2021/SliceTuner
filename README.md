@@ -14,4 +14,4 @@ The key challenges of estimating learning curves are that they may be inaccurate
 
 <p align="center"><img src=https://user-images.githubusercontent.com/67897374/86583165-c9960e00-bfbd-11ea-8a1f-4becfc53138c.jpg></p>
 
-System T receives as input a set of slices and their data and estimatesthe learning curves of the slices by training models on samples ofdata. .Next, System T performs the selective data acquisition optimizationwhere it determines how much data should be acquired per slice inorder to minimize the loss and unfairness. As data is acquired, thelearning curves can be iteratively updated. 
+System T receives as input a set of slices and their data and estimates the learning curves of the slices by training models on samples of data. Next, System T performs the selective data acquisition optimization where it determines how much data should be acquired per slice in order to minimize the loss and unfairness. As data is acquired, the learning curves can be iteratively updated. 
