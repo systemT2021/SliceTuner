@@ -55,7 +55,7 @@ class System_T:
         self.epochs = epochs
         
         
-        initial_k = 100
+        initial_k = 100 # initial_k = 3000 for ResNet-18
         num_k_ = initial_k + np.arange(0, k) * (len(self.train[0]) - initial_k)/ (k-1)
         num_k = [int(i) for i in num_k_]
         
